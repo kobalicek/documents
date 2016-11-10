@@ -15,10 +15,10 @@ The content of this file is inteded for people that want to contribute to the pr
 Project Structure
 -----------------
 
-  * / (root)
-    * /src/product - Project source and header files (normally /src should be in include path when including the project from other locations).
-    * /test - Tests and sample applications.
-    * /tools - Scripts to create project files and miscellaneous scripts for project management (code generation, etc...).
+  * `/` (root)
+    * `/src/product` - Project source and header files (normally /src should be in include path when including the project from other locations).
+    * `/test` - Tests and sample applications.
+    * `/tools` - Scripts to create project files and miscellaneous scripts for project management (code generation, etc...).
 
 Source File Naming
 ------------------
@@ -38,10 +38,10 @@ Source File Naming
     * ARM:
       * `*_neon.cpp`   - NEON
   * Common header files:
-    * `/src/product/product.h` - For product users, should always be included as `#include <product/product>`.
-    * `/src/product/product_apibegin.h` - Included before API is defined (used internally).
-    * `/src/product/product_apiend.h` - Included after API is defined (used internally).
-    * `/src/product/product_build.h` - Included by all files, contains compiler and target detection (used internally).
+    * `(root)/src/product/product.h` - For product users, should always be included as `#include <product/product>`.
+    * `(root)/src/product/product_apibegin.h` - Included before API is defined (used internally).
+    * `(root)/src/product/product_apiend.h` - Included after API is defined (used internally).
+    * `(root)/src/product/product_build.h` - Included by all files, contains compiler and target detection (used internally).
 
 Source File Structure
 ---------------------
@@ -50,7 +50,7 @@ Summary:
 
   * Source and header files contain a header, which specifies product name, brief description, and license information (license and a link to LICENSE.md file).
   * Source and header files that include other header files of the same product use relative paths starting with `./` or `../`, the relative path should first point to the project root and then to the desired file, like `../path/somefile.h`.
-  * Source and header files always include `product_apibegin.h` and `product_apiend.h` helpers that may define some macros to make the projec more portable.
+  * Source and header files always include `product_apibegin.h` and `product_apiend.h` helpers that may define some macros to make the project more portable.
   * Header files contain a guard that is a composition of product name, path, and file name - `_PRODUCT_PATH_FILE_H`.
   * Source files always define `PRODUCT_EXPORTS` macro so the project can properly configure API imports and exports.
 
@@ -186,13 +186,13 @@ Coding Style
     void* ptr;
 
     // Right:
-    ASMJIT_ASSERT(ptr != nullptr);
+    PRODUCT_ASSERT(ptr != nullptr);
     if (ptr) {
       ...
     }
 
     /* WRONG:
-    ASMJIT_ASSERT(ptr);
+    PRODUCT_ASSERT(ptr);
     if (ptr != nullptr) {
       ...
     }
@@ -256,7 +256,7 @@ Coding Style
 
       // There should be a default branch, even if it's just an ASSERT:
       default:
-        ASMJIT_NOT_REACHED();
+        PRODUCT_NOT_REACHED();
     }
     ```
 
@@ -269,7 +269,7 @@ Coding Style
 
       // There should be a default branch, even if it's just an ASSERT:
       default:
-        ASMJIT_NOT_REACHED();
+        PRODUCT_NOT_REACHED();
     }
     ```
 
